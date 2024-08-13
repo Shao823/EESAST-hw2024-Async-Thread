@@ -128,16 +128,13 @@ public class AddExpr : Expr
         ExprB = B;
         A.Register(this);
         B.Register(this);
-        _=Update();
     }
 
     public override async Task Update()
     {
-        int newVal;
         lock (lockobj)
         {
-            newVal=ExprA.Val+ExprB.Val;
-            val=newVal;
+            val=ExprA.Val+ExprB.Val;
         }
         if (parent !=null)
         {
